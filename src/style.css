@@ -23,7 +23,7 @@ body {
 main {
     overflow: hidden;
     border-radius: 2rem;
-    min-width: 20%;
+    min-width: 20rem;
     width: 24rem;
     margin: auto;
     padding: 0.5rem;
@@ -33,14 +33,14 @@ main {
 }
 #container {
     background-color: hsla(1, 1%, 96%, 1);
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 1.4rem;
     box-shadow: inset 0 0 6px hsla(1, 1%, 20%, 0.05);
 }
 
 #mainContainer {
     border: 3px solid hsla(60, 40%, 50%, 1);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 1rem;
     background-color: hsla(60, 40%, 60%, 1);
 }
@@ -60,6 +60,7 @@ main {
 /* screenOutput text */
 
 #screenOutput {
+    /* font-family: 'Courier New', monospace; */
     font-family: 'typoDigit', sans-serif;
     font-weight: 800;
     font-size: 36px;
@@ -67,7 +68,8 @@ main {
     color: hsla(60, 80%, 50%, 1);}
 
 #screenCurrentOperation {
-    font-family: 'typoDigit', sans-serif;
+    /* font-family: 'typoDigit', sans-serif; */
+    font-family: 'Courier New', monospace;
     font-weight: 800;
     font-size: 16px;
     letter-spacing: 0.15rem;
@@ -89,8 +91,9 @@ main {
     margin-top: 1rem;
 }
 
-.regularBtn {
+.btn {
     flex: auto;
+    display: inline-flex;
     min-height: 48px;
     width: auto;
     max-height: 48px;
@@ -98,42 +101,26 @@ main {
     padding: 0.5rem 0.5rem;
     font-weight: 500;
     font-size: 24px;
+    text-transform: uppercase;
     font-family: Helvetica, sans-serif;
     border-radius: 0.5rem;
-    background-color: hsla(1, 0%, 98%, 1);
+    background-color: hsla(1, 0%, 96%, 1);
     color: hsla(1, 1%, 30%, 1);
     box-shadow: 0 4px 4px hsla(1, 1%, 20%, 0.4);
+    transition: background-color 0.2s ease;
+
+    cursor: pointer;
+    user-select: none;
+}
+.btn:hover {
+    filter: brightness(1.05);
+    box-shadow: 0 6px 4px hsla(1, 1%, 20%, 0.4);
 }
 
-.operationBtn {
-    flex: auto;
-    min-height: 48px;
-    width: auto;
-    max-height: 48px;
-    aspect-ratio: 1 / 1;
-    padding: 0.5rem 0.5rem;
-    font-weight: 500;
-    font-size: 24px;
-    font-family: Helvetica, sans-serif;
-    border-radius: 0.5rem;
-    background-color: hsla(60, 40%, 75%, 1);
-    color: hsla(1, 1%, 30%, 1);
-    box-shadow: 0 4px 4px hsla(1, 1%, 20%, 0.4);
-}
-
-.ctaBtn {
-    flex: auto;
-    min-height: 48px;
-    width: auto;
-    max-height: 48px;
-    aspect-ratio: 1 / 1;
-    padding: 0.5rem 0.5rem;
-    font-weight: 500;
-    font-size: 24px;
-    font-family: Helvetica, sans-serif;
-    border-radius: 0.5rem;
-    background-color: hsla(220, 70%, 45%, 1);
-    color: hsla(1, 1%, 100%, 1);
-    box-shadow: 0 4px 4px hsla(1, 1%, 20%, 0.4);
+.btn:active {
+    box-shadow: none;
+    border: 2px solid hsla(60, 40%, 40%, 0.6);
+    box-shadow: inset 0 0 4px hsla(1, 1%, 20%, 0.8);
+    filter: brightness(0.95);
 }
 

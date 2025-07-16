@@ -4,13 +4,29 @@ const screen = document.querySelector("#screen");
 const screenCurrentOperation = document.createElement("p");
 screen.appendChild(screenCurrentOperation);
 screenCurrentOperation.setAttribute("id", "screenCurrentOperation");
-screenCurrentOperation.textContent = '-';
+screenCurrentOperation.textContent = 'lorem ipsum';
 
 // result
 const screenOutput = document.createElement("p");
 screen.appendChild(screenOutput);
 screenOutput.setAttribute("id", "screenOutput");
 screenOutput.textContent = '0';
+
+// User input
+const keyboard = document.querySelector("#keyboard");
+//slect all keys
+const keys = Array.from(document.querySelectorAll('.group .btn'));
+
+keys.forEach(key => {
+    key.addEventListener('click', (e) => {
+        let target = e.target;
+        if (target.textContent == 'ac') {
+            screenCurrentOperation.textContent = '-';
+            screenOutput.textContent = '0';
+        } else
+        screenCurrentOperation.textContent = target.textContent;
+    });
+});
 
 // 
 let inputA = 0;
