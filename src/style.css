@@ -28,7 +28,7 @@ main {
     margin: auto;
     padding: 0.5rem;
     background-color: hsla(1, 1%, 98%, 1);
-    box-shadow: 0 8px 8px hsla(1, 1%, 20%, 0.25);
+    box-shadow: 0 24px 16px hsla(1, 1%, 20%, 0.25);
     border: 1px solid hsla(1, 1%, 90%, 1);
 }
 #container {
@@ -60,8 +60,8 @@ main {
 /* screenOutput text */
 
 #screenOutput {
-    /* font-family: 'Courier New', monospace; */
-    font-family: 'typoDigit', sans-serif;
+    font-family: 'Courier New', monospace;
+    /* font-family: 'typoDigit', sans-serif; */
     font-weight: 800;
     font-size: 36px;
     letter-spacing: 0.25rem;
