@@ -1,9 +1,16 @@
 const screen = document.querySelector("#screen");
+
+// history
+const screenCurrentOperation = document.createElement("p");
+screen.appendChild(screenCurrentOperation);
+screenCurrentOperation.setAttribute("id", "screenCurrentOperation");
+screenCurrentOperation.textContent = '-';
+
+// result
 const screenOutput = document.createElement("p");
 screen.appendChild(screenOutput);
-screenOutput.setAttribute("id", "screenOutput")
+screenOutput.setAttribute("id", "screenOutput");
 screenOutput.textContent = '0';
-
 
 // 
 let inputA = 0;

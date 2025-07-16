@@ -1,0 +1,67 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+/* font setup */
+@font-face {
+  font-family: 'typoDigit'; /* Give your font a recognizable name */
+  src: url('./font/typo-digit-demo.regular.otf') format('opentype'); /* Fallback for older browsers */
+  font-weight: normal; /* Adjust if your font has different weights */
+  font-style: normal;  /* Adjust if your font has italic styles */
+  font-display: swap; 
+}
+
+/* Main Body Styles Setup */
+#conatiner {
+    width: 400px;
+}
+/* Screen */
+#screen {
+    height: 4rem;
+    background-color: hsla(1, 1%, 98%, 1);
+    border-radius: 0.5rem;
+    padding: 1rem 1rem 0.5rem 1rem;
+    box-shadow: inset 0 4px 12px hsla(1, 1%, 20%, 0.5);
+    border: 2px solid hsla(60, 80%, 35%, 1);
+    margin-bottom: 1rem;
+
+    text-align: right;
+}
+#screenOutput {
+    font-family: 'typoDigit', sans-serif;
+    font-weight: 800;
+    font-size: 36px;
+    letter-spacing: 0.25rem;
+}
+
+/* keyboard */
+#keyboard {
+    display: flex;
+    flex-direction: column;
+}
+
+.group {
+    flex: 0 0 1;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.regularBtn {
+    flex: 0 0 1;
+    margin-bottom: 1rem;
+    width: auto;
+    height: 48px;
+    aspect-ratio: 1/1;
+    padding: 0.5rem;
+    background-color: hsla(1, 0%, 98%, 1);
+    color: hsla(1, 1%, 20%, 1);
+    box-shadow: 0 4px 4px hsla(1, 1%, 20%, 0.4);
+
+    font-weight: 500;
+    font-size: 24px;
+    font-family: Helvetica, sans-serif;
+    border-radius: 0.5rem;
+}
