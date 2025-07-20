@@ -59,7 +59,7 @@ main {
 
 /* screenOutput text */
 
-#screenOutput {
+#displayText {
     font-family: 'Courier New', monospace;
     /* font-family: 'typoDigit', sans-serif; */
     font-weight: 800;
