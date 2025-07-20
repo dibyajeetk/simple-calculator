@@ -28,23 +28,15 @@ const numberKeys = keys.filter(key => {
 
 keys.forEach(key => {
     key.addEventListener('click', (e) => {
+        let userInput = '';
         let target = e.target;
-        console.log(target.title)
-        if (target.textContent === 'ac') {
-            screenCurrentOperation.textContent = '-';
-            screenOutput.textContent = '0';
-            numX = '0';
-        } else if (numberKeys.find(key => key === target)) {
-            let input = '';
-            input += target.textContent;
-            numX = numX.concat(input);
-            numX = numX.slice(1);
-            screenOutput.textContent = numX;
-            console.log(numX)
-        } else if (target.title === 'backspace') {
-            inputA = inputA.slice(0, -1);
-            screenOutput.textContent = inputA;
+        if (numberKeys.find(key => key.title === target.title)){
+            userInput = target.title;
+            numX += userInput;   
+        } else if (target.title === 'add') {
+            func = 'add';
         }
+        console.log(numX, func, numY)
     });
 });
 
