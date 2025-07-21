@@ -67,7 +67,7 @@ main {
     letter-spacing: 0.25rem;
     color: hsla(60, 80%, 50%, 1);}
 
-#screenCurrentOperation {
+#subText {
     /* font-family: 'typoDigit', sans-serif; */
     font-family: 'Courier New', monospace;
     font-weight: 800;
