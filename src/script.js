@@ -13,7 +13,7 @@ displayText.setAttribute("id", "displayText");
 let operation = {}; // stores entire user operation under keys numX, operation, NumY
 let input = ''; // stores raw Input from user
 let nums = [0, 1, 2 ,3, 4, 5, 6, 7, 8, 9, '.'];
-let operators = ['+', '−', '×', '÷', '%'];
+let operators = ['+', '−', '×', '÷', '%', 'U+2212'];
 
 // User Input Events Management
 // Need a way to take input for 1st, 2nd numbers and operation
@@ -22,13 +22,27 @@ let operators = ['+', '−', '×', '÷', '%'];
 keys.forEach(key => {
     key.addEventListener('click', (e) => {
         let target = e.target;
+        
+        let numX = 0;
+        let numY = 0;
+        let action = 0;
 
         if ((nums.map(n => n.toString())).includes(target.textContent)) {
-            input += (target.textContent).trim();
-            displayText.textContent = input;
-            console.log(input);
+            input += (target.textContent); //.trim();
+            if (input.includes('.')) {
+                numX = parseFloat(input);
+                displayText.textContent = input;
+            } else {
+                numX = parseInt(input);
+                displayText.textContent = numX;
+            }
+            console.log(numX);
         } else if (operators.includes(target.textContent)) {
-            input += target.textContent;
+            let mapping = {
+                '+': sum(),
+            }
+            action = target.textContent;
+            input += action;
             displayText.textContent = input;
         } else if (target.textContent === 'ac') {
             input = '';
@@ -37,14 +51,12 @@ keys.forEach(key => {
             input = input.slice(0, -1);
             displayText.textContent = input;
         } else if (target.textContent === '=') {
-            input = 'result';
+            input = operate(numX, numY, action);
             displayText.textContent = input;
         } else {
             input = 'rand';
             displayText.textContent += input;
         }
-        
-
             
         
         // let action = operators.find(op => input.includes(op));
@@ -67,31 +79,14 @@ keys.forEach(key => {
         // let numY = input.slice(input.indexOf(action) + 1);
         // displayText.textContent = numX + '' + action + '' + numY;
         // console.log(numX, action, numY);
-        //
-
-        //  if (nums.includes(Number(target.textContent))) {
-            
-        // }
-
-        // else if (target.textContent === 'ac') {
-        //     input = '';
-        //     displayText.textContent = 0;
-        // } else if (target.textContent === '=') {
-        //     displayText.textContent = 'Solution'
-        // } else if(target.textContent === 'rand') {
-        //     input += target.textContent;
-        // } else if (target.title === 'backspace') {
-        //     displayText.textContent = input.slice(-1);
-        // }
-        // if (nums.includes(Number(target.textContent))) {
-        //     //handle number inputs
-        //     input += target.textContent;
-        //     operation['numX'] = input; // assign raw input to user operation
-        //     displayText.textContent = inputObject['numX'];
-        // } else if (operations.includes(target.textContent)) {
-        //     //handle operation inputs
-        //     console.log(target.textContent);
-        //     inputObject['action'] = target.textContent;
-        // }
     });
-})
+});
+
+function operate (x , y, operator) {
+    let value = `${x}, ${y}, ${operator}`;
+    return value
+};
+
+function sum (x , y) {
+    return x + y
+}
