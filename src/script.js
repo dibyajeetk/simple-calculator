@@ -22,7 +22,7 @@ function operate(x, y, op) {
         case '+': result = x + y; break;
         case '-': result = x - y; break;
         case '*': result = x * y; break;
-        case '/': result = y === 0 ? '∞' : x / y; break;
+        case '/': result = y === 0 ? 'error' : x / y; break;
         case '%': result = x % y; break;
     }
 
