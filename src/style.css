@@ -59,7 +59,7 @@ main {
 
 /* screenOutput text */
 
-#displayText {
+#output {
     font-family: 'Courier New', monospace;
     /* font-family: 'typoDigit', sans-serif; */
     font-weight: 800;
@@ -81,6 +81,9 @@ main {
     display: flex;
     flex-direction: column;
     width: auto;
+}
+.material-symbols-rounded {
+    pointer-events: none;
 }
 
 .group {
