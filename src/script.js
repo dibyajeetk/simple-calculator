@@ -1,69 +1,85 @@
-const screenUI = document.querySelector('#screen'); // screen div elment
+const screenUI = document.querySelector('#screen');
 
-const outputUI = document.createElement('p'); // output p element
+const outputUI = document.createElement('p');
 outputUI.textContent = 0;
 outputUI.setAttribute('id', 'output');
 screenUI.appendChild(outputUI);
 
-let userInputX = 0; // stores first user input
-let userInputY = 0; // stores second user input
-let userOperation = 0; // stores users intended action
-let rawInput = 0;
+let userInputX = ''; // store as string
+let userInputY = '';
+let userOperation = '';
+let rawInput = '';
 
+// Supported operators
+const ops = ['+', '-', '*', '/', '%'];
 
-// calculator operators & functions
-
-function operate (x, y, op) {
-    x = parseInt(x);
-    y = parseInt(y);
+function operate(x, y, op) {
+    x = parseFloat(x);
+    y = parseFloat(y);
     let result = 0;
-    if (op === '+') {
-        result = x + y;
-    } else if (op === '-') {
-        result = x - y;
-    }
-    else if (op === '*') {
-        result = x * y;
-    } else if (op === '/') {
-        result = x / y;
-    } else if (op === '%') {
-        result = x % y;
-    }
-    outputUI.textContent = result;
-    console.log(result)
-};
 
-// keyboard event listner
+    switch (op) {
+        case '+': result = x + y; break;
+        case '-': result = x - y; break;
+        case '*': result = x * y; break;
+        case '/': result = y === 0 ? '∞' : x / y; break;
+        case '%': result = x % y; break;
+    }
+
+    outputUI.textContent = result;
+    
+    // Reset state
+    rawInput = '' + result;
+    userInputX = '' + result;
+    userInputY = '';
+    userOperation = '';
+}
+
 const keyboard = document.querySelectorAll('.group .btn');
 
 keyboard.forEach(key => key.addEventListener('click', (e) => {
-    let target = e.target; // each key
-    
-    let nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    let ops = ['+', '-', '*', '%', '/'];
+    const target = e.target;
+    const value = target.textContent;
 
-    if (target.textContent === '=') {
-        operate(userInputX, userInputY, userOperation);
-    } else if (target.textContent === 'ac') {
-        rawInput = 0;
-        userInputX = 0;
-        userInputY = 0;
-        userOperation = 0;
+    if (value === '=') {
+        if (userInputX && userInputY && userOperation) {
+            operate(userInputX, userInputY, userOperation);
+        }
+    } else if (value === 'ac') {
+        rawInput = '';
+        userInputX = '';
+        userInputY = '';
+        userOperation = '';
         outputUI.textContent = 0;
     } else if (target.title === 'backspace') {
         rawInput = rawInput.slice(0, -1);
-        userInputX = rawInput.slice(1);
-        outputUI.textContent = userInputX;
-    } else {
-        rawInput += target.textContent;
-        outputUI.textContent = rawInput.slice(1);
 
-        if (ops.some(op => rawInput.includes(op))){
-            userOperation = ops.find(op => rawInput.includes(op));
+        // Try to reconstruct X, Y, and operation
+        userOperation = ops.find(op => rawInput.includes(op)) || '';
+        if (userOperation) {
             const opIndex = rawInput.indexOf(userOperation);
-            userInputX = rawInput.slice(1, opIndex);
+            userInputX = rawInput.slice(0, opIndex);
             userInputY = rawInput.slice(opIndex + 1);
-            outputUI.textContent = userInputX + userOperation + userInputY;
+        } else {
+            userInputX = rawInput;
+            userInputY = '';
         }
+
+        outputUI.textContent = rawInput || 0;
+    } else {
+        rawInput += value;
+
+        userOperation = ops.find(op => rawInput.includes(op)) || '';
+
+        if (userOperation) {
+            const opIndex = rawInput.indexOf(userOperation);
+            userInputX = rawInput.slice(0, opIndex);
+            userInputY = rawInput.slice(opIndex + 1);
+        } else {
+            userInputX = rawInput;
+            userInputY = '';
+        }
+
+        outputUI.textContent = rawInput;
     }
 }));
